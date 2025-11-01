@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Producto;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,20 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
         });
+
+        Producto::create([
+            'codigo'    => '1001',
+            'nombre'    => 'CAMIONETA',
+            'marca'     => 'HYU PV LCV',
+            'modelo'    => 'GRAND CRETA'
+        ]);
+
+        Producto::create([
+            'codigo'    => '1002',
+            'nombre'    => 'CAMIONETA',
+            'marca'     => 'GEELY',
+            'modelo'    => 'COOLRAY'
+        ]);
     }
 
     /**

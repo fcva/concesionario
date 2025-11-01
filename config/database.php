@@ -122,6 +122,9 @@ return [
             'database'  => env('DB_DATABASE', 'laravel'),
             'username'  => env('DB_USERNAME', 'root'),
             'password'  => env('DB_PASSWORD', ''),
+            'options'  => [
+                'authSource' => env('DB_AUTH_SOURCE', 'admin'),
+            ],
         ],
 
     ],

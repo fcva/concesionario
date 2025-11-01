@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Persona;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -29,14 +30,25 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable();
         });
 
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
+        /*Schema::create('sessions', function (Blueprint $table) {
+            $table->string('_id')->primary();
             $table->foreignId('user_id')->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
-        });
+        });*/
+
+        $persona = Persona::create([
+            'nombres' => 'Freddy',
+            'apellidos' => 'Claydermam',
+            'dni' => '12345678'
+        ]);
+
+        $persona->user()->create([
+            'email' => 'freddy@example.com',
+            'password' => bcrypt('123456')
+        ]);
     }
 
     /**
@@ -46,6 +58,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
-        Schema::dropIfExists('sessions');
+        // Schema::dropIfExists('sessions');
     }
 };
