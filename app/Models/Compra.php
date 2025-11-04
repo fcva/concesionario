@@ -17,6 +17,8 @@ class Compra extends Model
     public function persona(): BelongsTo
     {
         return $this->belongsTo(Persona::class, 'persona_id', '_id');
+        // return $this->belongsTo(Persona::class);
+
     }
 
     /*public function productos(): BelongsToMany
