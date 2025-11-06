@@ -10,6 +10,7 @@ use App\Models\Compra;
 use App\Models\Persona;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class CompraController extends Controller
@@ -19,6 +20,9 @@ class CompraController extends Controller
         $per_page = request()->get('per_page') ?: 9;
 
         // return PersonaResource::collection(Persona::get());
+        $user = Auth::id();
+        // $user->load('persona');
+        // return $user; 
 
         $compras = Compra::with('persona','detalleCompras')->paginate($per_page);
     
@@ -27,5 +31,12 @@ class CompraController extends Controller
             'personas' => Inertia::lazy(fn () => PersonaResource::collection(Persona::get())),
             'productos' => Inertia::lazy(fn () => ProductoResource::collection(Producto::get()))
         ]);
+    }
+
+    public function store(Request $request) {
+
+        // $compra = Compra::create([]);
+
+        // return $request->all();
     }
 }

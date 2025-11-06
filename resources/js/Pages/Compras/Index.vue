@@ -14,25 +14,25 @@ defineProps({
 
 const { props } = usePage()
 
-// const personas = ref(props.personas)
-const personas = ref(props.personas ?? { data: [] })
-console.log(personas);
+/**
+ * Producto
+ */
+const productos = ref(props.productos ?? { data: [] })
+const loadingProductos = ref(false)
+// const selectedProducto = ref('')
 
-const loading = ref(false)
-const selectedPersona = ref('')
+function loadProductos() {
 
-function loadPersonas() {
-  // si ya se cargaron una vez, no volver a recargar
-  if (personas.value.data && personas.value.data.length > 0) return
+  if (productos.value.data && productos.value.data.length > 0) return
 
-  loading.value = true
+  loadingProductos.value = true
 
   router.reload({
-    only: ['personas'], // carga solo la prop lazy 'personas'
+    only: ['productos'], // carga solo la prop lazy 'productos'
     onFinish: () => {
-      // ✅ actualizamos con la nueva data del servidor
-      personas.value = usePage().props.personas
-      loading.value = false
+      // actualizamos con la nueva data del servidor
+      productos.value = usePage().props.productos
+      loadingProductos.value = false
     },
   })
 }
@@ -42,14 +42,12 @@ function loadPersonas() {
 
 
 
-
-
 const modalAction = ref('')
 
 const form = useForm({
-    name:         '',
-    email:   '',
-    password:    ''
+    producto_id:    '',
+    cantidad:       '',
+    precio_compra:  ''
 })
 
 const showCreateModalUsuario = () => {
@@ -57,11 +55,14 @@ const showCreateModalUsuario = () => {
     modalStore.openModal('Nueva Compra', '', modalAction.value)    
 }
 
-const createUsuario = () => {
+const createCompra = () => {
     
-    /*const url = route('acl.usuario.store')
+    // console.log(form);
+
+    const url = route('compras.store')
     
     form.post(url, {
+        
         onSuccess: (response) => {
 
             // console.log('Returning from back... '+Object.keys(response.props.users.data));
@@ -69,7 +70,7 @@ const createUsuario = () => {
 
             closeModalApp()
         }
-    })*/
+    })
 }
 
 const showEditModalUsuario = (item) => {
@@ -195,29 +196,29 @@ const closeModalApp = () => {
                                     </h3>
                                 </div>
                                 <div class="p-3 space-y-2">
-                                    <form @submit.prevent="createUsuario">
+                                    <form @submit.prevent="createCompra">
 
 
                                         <div>
-                                            <label for="persona" class="block mb-2 font-semibold">Seleccionar Persona</label>
+                                            <label for="persona" class="block mb-2 font-semibold">Seleccionar Productos</label>
 
                                             <select
                                                 id="persona"
                                                 class="form-select text-gray-700 border rounded p-2 mb-3 w-full"
-                                                v-model="selectedPersona"
-                                                @focus="loadPersonas"
+                                                v-model="form.producto_id"
+                                                @focus="loadProductos"
                                             >
                                                 <option value="">-- Seleccionar --</option>
                                                 <option
-                                                v-for="persona in personas.data ?? []"
-                                                :key="persona._id"
-                                                :value="persona._id"
+                                                v-for="producto in productos.data ?? []"
+                                                :key="producto._id"
+                                                :value="producto._id"
                                                 >
-                                                {{ persona.nombres }} {{ persona.apellidos }}
+                                                {{ producto.codigo }} {{ producto.nombre }} {{ producto.marca }}
                                                 </option>
                                             </select>
 
-                                            <p v-if="loading" class="text-gray-500 mt-2">Cargando personas...</p>
+                                            <p v-if="loadingProductos" class="text-gray-500 mt-2">Cargando productos...</p>
                                         </div>
 
 
@@ -231,25 +232,17 @@ const closeModalApp = () => {
 
                                         <input
                                             type="text"
-                                            v-model="form.name"
-                                            placeholder="Nombre"
+                                            v-model="form.cantidad"
+                                            placeholder="Cantidad"
                                             autocomplete="off"
                                             class="w-full text-gray-700 p-2 mb-3 border rounded-lg"
                                             v-on:focus="form.clearErrors()"
                                         />
 
                                         <input
-                                            type="email"
-                                            v-model="form.email"
-                                            placeholder="Email"
-                                            autocomplete="off"
-                                            class="w-full text-gray-700 p-2 mb-3 border rounded-lg"
-                                        />
-
-                                        <input
                                             type="text"
-                                            v-model="form.password"
-                                            value="password"
+                                            v-model="form.precio_compra"
+                                            placeholder="Precio de Compra"
                                             autocomplete="off"
                                             class="w-full text-gray-700 p-2 mb-3 border rounded-lg"
                                         />
