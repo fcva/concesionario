@@ -21,11 +21,11 @@ Route::get('/', function () {
 
 Route::get('/execute', function() {
 
-    $persona = Persona::create([
+    /*$persona = Persona::create([
         'nombres' => 'Friedrich',
         'apellidos' => 'Gauss',
         'dni' => '234523'
-    ]);
+    ]);*/
 
     /*$persona = Persona::find('690a0206f5002bc91500c9c3'); 
     // return $persona->_id;

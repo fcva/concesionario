@@ -47,7 +47,7 @@ return new class extends Migration
 
         $persona->user()->create([
             'email' => 'freddy@example.com',
-            'password' => bcrypt('123456')
+            'password' => bcrypt('password')
         ]);
     }
 

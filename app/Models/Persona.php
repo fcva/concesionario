@@ -23,8 +23,8 @@ class Persona extends Model
         return $this->hasOne(User::class, 'persona_id');
     }
 
-    public function compras(): HasMany
-    {
-        return $this->hasMany(Compra::class, 'persona_id');
-    }
+    // public function compras(): HasMany
+    // {
+    //     return $this->hasMany(Compra::class, 'persona_id');
+    // }
 }

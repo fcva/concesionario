@@ -19,11 +19,6 @@ class CompraController extends Controller
 
         $per_page = request()->get('per_page') ?: 9;
 
-        // return PersonaResource::collection(Persona::get());
-        $user = Auth::id();
-        // $user->load('persona');
-        // return $user; 
-
         $compras = Compra::with('persona','detalleCompras')->paginate($per_page);
     
         return Inertia::render('Compras/Index', [
@@ -37,6 +32,6 @@ class CompraController extends Controller
 
         // $compra = Compra::create([]);
 
-        // return $request->all();
+        return $request->all();
     }
 }
