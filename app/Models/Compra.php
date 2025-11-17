@@ -14,23 +14,15 @@ class Compra extends Model
 
     protected $guarded = [];
 
-    /*public function persona(): BelongsTo
-    {
-        return $this->belongsTo(Persona::class, 'persona_id', '_id');
-        // return $this->belongsTo(Persona::class);
-
-    }*/
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', '_id');
-        // return $this->belongsTo(Persona::class);
     }
 
-    /*public function productos(): BelongsToMany
+    public function provider(): BelongsTo
     {
-        return $this->belongsToMany(Producto::class, 'detalle_compras', 'compra_id', 'producto_id')->withPivot(['cantidad', 'precio_unitario'])->withTimestamps();
-    }*/
+        return $this->belongsTo(Provider::class, 'provider_id', '_id');
+    }
 
     public function detalleCompras(): HasMany
     {

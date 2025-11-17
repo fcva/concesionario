@@ -19,25 +19,43 @@ const { props } = usePage()
  */
 const productos = ref(props.productos ?? { data: [] })
 const loadingProductos = ref(false)
-// const selectedProducto = ref('')
 
 function loadProductos() {
 
-  if (productos.value.data && productos.value.data.length > 0) return
+    if (productos.value.data && productos.value.data.length > 0) return
 
-  loadingProductos.value = true
+    loadingProductos.value = true
 
-  router.reload({
-    only: ['productos'], // carga solo la prop lazy 'productos'
-    onFinish: () => {
-      // actualizamos con la nueva data del servidor
-      productos.value = usePage().props.productos
-      loadingProductos.value = false
-    },
-  })
+    router.reload({
+        only: ['productos'], // carga solo la prop lazy 'productos'
+        onFinish: () => {
+        // actualizamos con la nueva data del servidor
+        productos.value = usePage().props.productos
+        loadingProductos.value = false
+        },
+    })
 }
 
+/**
+ * Provider
+ */
+const providers = ref(props.providers ?? { data: [] })
+const loadingProviders = ref(false)
 
+function loadProviders() {
+
+    if (providers.value.data && providers.value.data.length > 0) return
+
+    loadingProviders.value = true
+
+    router.reload({
+        only: ['providers'],
+        onFinish: () => {
+            providers.value = usePage().props.providers
+            loadingProviders.value = false
+        },
+    })
+}
 
 
 
@@ -46,6 +64,7 @@ const modalAction = ref('')
 
 const form = useForm({
     producto_id:    '',
+    provider_id:    '',
     cantidad:       '',
     precio_compra:  ''
 })
@@ -66,7 +85,9 @@ const createCompra = () => {
         onSuccess: (response) => {
 
             // console.log('Returning from back... '+Object.keys(response.props.users.data));
-            console.log('Returning from back... '+response.props.users.data)
+            // console.log('Returning from back... '+response.props.users.data)
+            console.log(response);
+            
 
             closeModalApp()
         }
@@ -135,7 +156,7 @@ const closeModalApp = () => {
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
-                Usuarios
+                Compras
             </h2>
         </template>
 
@@ -156,10 +177,11 @@ const closeModalApp = () => {
                     <div class="p-6 text-gray-900">
                         <table class="min-w-full bg-white ">
                             <tbody class="divide-y divide-gray-200 ">
+
                                 <tr v-for="compra in compras.data" :key="compra.id" class="hover:bg-gray-100">
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        {{ compra.persona.nombres }} {{ compra.persona.apellidos }}
+                                        {{ compra.user.persona.nombre }} {{ compra.user.persona.pri_ape }} {{ compra.user.persona.seg_ape }}
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
@@ -167,7 +189,23 @@ const closeModalApp = () => {
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                        {{ compra.detalleCompras }}
+                                        <div v-for="detalleCompra in compra.detalleCompras">
+                                            <td>
+                                                {{ detalleCompra.producto.codigo }}
+                                            </td>
+
+                                            <td>
+                                                {{ detalleCompra.producto.nombre }}
+                                            </td>
+                                            
+                                            <td>
+                                                {{ detalleCompra.producto.marca }}
+                                            </td>
+
+                                            <td>
+                                                {{ detalleCompra.producto.modelo }}
+                                            </td>
+                                        </div>
                                     </td>
 
                                     <td class="px-6 py-4 whitespace-nowrap text-center text-sm space-x-2">
@@ -200,7 +238,7 @@ const closeModalApp = () => {
 
 
                                         <div>
-                                            <label for="persona" class="block mb-2 font-semibold">Seleccionar Productos</label>
+                                            <!-- <label for="persona" class="block mb-2 font-semibold">Seleccionar Productos</label> -->
 
                                             <select
                                                 id="persona"
@@ -208,7 +246,7 @@ const closeModalApp = () => {
                                                 v-model="form.producto_id"
                                                 @focus="loadProductos"
                                             >
-                                                <option value="">-- Seleccionar --</option>
+                                                <option value="">--- Seleccionar Producto ---</option>
                                                 <option
                                                 v-for="producto in productos.data ?? []"
                                                 :key="producto._id"
@@ -222,7 +260,25 @@ const closeModalApp = () => {
                                         </div>
 
 
+                                        <div>
+                                            <select
+                                                id="provider"
+                                                class="form-select text-gray-700 border rounded p-2 mb-3 w-full"
+                                                v-model="form.provider_id"
+                                                @focus="loadProviders"
+                                            >
+                                                <option value="">--- Seleccionar Proveedor ---</option>
+                                                <option
+                                                v-for="provider in providers.data ?? []"
+                                                :key="provider._id"
+                                                :value="provider._id"
+                                                >
+                                                {{ provider.nombre }}
+                                                </option>
+                                            </select>
 
+                                            <p v-if="loadingProviders" class="text-gray-500 mt-2">Cargando proveedores...</p>
+                                        </div>
 
 
 

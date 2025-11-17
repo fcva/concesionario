@@ -6,6 +6,7 @@ use App\Models\Compra;
 use App\Models\DetalleCompra;
 use App\Models\Persona;
 use App\Models\Producto;
+use App\Models\Provider;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,6 +21,18 @@ Route::get('/', function () {
 });
 
 Route::get('/execute', function() {
+
+    /*$provider = Provider::create([
+        'nombre'    => 'Grupo Pana',
+        'direccion' => 'Jr. Lima 300',
+        'telefono'  => '999000111'
+    ]);
+
+    $provider2 = Provider::create([
+        'nombre'    => 'Toyota Peru',
+        'direccion' => 'Jr. Lima 300',
+        'telefono'  => '999000111'
+    ]);*/
 
     /*$persona = Persona::create([
         'nombres' => 'Friedrich',
