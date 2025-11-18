@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Provider\ProviderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,5 +29,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/provider', function () {
     return Inertia::render('Provider/Index');
 })->middleware(['auth', 'verified'])->name('provider');
+
+Route::resource('/provider', ProviderController::class);
 
 require __DIR__.'/auth.php';
