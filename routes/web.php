@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Provider\ProviderController;
+use App\Http\Controllers\Producto\ProductoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,5 +32,5 @@ Route::get('/provider', function () {
 })->middleware(['auth', 'verified'])->name('provider');
 
 Route::resource('/provider', ProviderController::class);
-
+Route::resource('/producto', ProductoController::class);
 require __DIR__.'/auth.php';

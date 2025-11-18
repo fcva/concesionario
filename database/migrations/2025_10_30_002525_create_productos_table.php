@@ -30,6 +30,13 @@ return new class extends Migration
             'marca'     => 'GEELY',
             'modelo'    => 'COOLRAY'
         ]);
+
+        // Producto::create([
+        //     'codigo'    => '1003',
+        //     'nombre'    => 'SEDAN',
+        //     'marca'     => 'TOYOTA',
+        //     'modelo'    => 'COROLLA'
+        // ]);
     }
 
     /**

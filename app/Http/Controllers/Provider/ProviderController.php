@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Provider;
 
-use App\Http\Controllers\Controller;
 use App\Http\Resources\ProviderResource;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Provider;
 use Illuminate\Support\Facades\Redirect;
@@ -41,10 +41,10 @@ class ProviderController extends Controller
         return Redirect::route('provider.index');
     }
 
-    public function show(Request $request, Provider $provider) {
+    // public function show(Request $request, Provider $provider) {
 
-        return Inertia::render('Provider/Show', [
-            'providers' => new ProviderResource($provider)
-        ]);
-    }
+    //     return Inertia::render('Provider/Show', [
+    //         'providers' => new ProviderResource($provider)
+    //     ]);
+    // }
 }
