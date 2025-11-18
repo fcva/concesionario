@@ -15,6 +15,18 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
         });
+
+        // Provider::create([
+        //     'nombre'    => 'SERVICIOS GENERALES S.A.C.',
+        //     'direccion'     => 'Los Olivos',
+        //     'ruc'       => '20548796532',
+        //     'teléfono'    => '93254578'
+        // ]);
+        // Provider::create([
+        //     'nombre'    => 'AUTO REPUESTOS EIRL',
+        //     'direccion'     => 'San Juan de Lurigancho',
+        //     'telefono'    => '987654321'
+        // ]);
     }
 
     /**
