@@ -15,6 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
         });
+
+        // Provider::create([
+        //     'nombre'    => 'SERVICIOS GENERALES S.A.C.',
+        //     'direccion'     => 'Los Olivos',
+        //     'teléfono'    => '93254578'
+        // ]);
     }
 
     /**
