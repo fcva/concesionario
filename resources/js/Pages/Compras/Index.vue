@@ -191,19 +191,27 @@ const closeModalApp = () => {
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                                         <div v-for="detalleCompra in compra.detalleCompras">
                                             <td>
-                                                {{ detalleCompra.producto.codigo }}
+                                                {{ detalleCompra.producto.codigo }} |
                                             </td>
 
                                             <td>
-                                                {{ detalleCompra.producto.nombre }}
+                                                {{ detalleCompra.producto.nombre }} |
                                             </td>
                                             
                                             <td>
-                                                {{ detalleCompra.producto.marca }}
+                                                {{ detalleCompra.producto.marca }} |
                                             </td>
 
                                             <td>
-                                                {{ detalleCompra.producto.modelo }}
+                                                {{ detalleCompra.producto.modelo }} |
+                                            </td>
+
+                                            <td>
+                                                {{ detalleCompra.cantidad }} |
+                                            </td>
+
+                                            <td>
+                                                {{ detalleCompra.precio_compra }} |
                                             </td>
                                         </div>
                                     </td>

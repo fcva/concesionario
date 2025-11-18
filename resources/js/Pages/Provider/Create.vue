@@ -40,19 +40,19 @@ const createProvider = () => {
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
                             Nombre
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Nombre de proveedor" required v-model="formulario.nombre">
+                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Nombre de proveedor" autocomplete="off" required v-model="formulario.nombre">
                         </div>
                         <div class="mb-4">
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">
                             Direccion
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="direccion" type="text" placeholder="Direccion del proveedor" required v-model="formulario.direccion">
+                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="direccion" type="text" placeholder="Direccion del proveedor" autocomplete="off" required v-model="formulario.direccion">
                         </div>
                         <div class="mb-4">
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">
                             Telefono
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="telefono" type="tel" placeholder="Telefono del proveedor" required v-model="formulario.telefono">
+                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="telefono" type="tel" placeholder="Telefono del proveedor" autocomplete="off" required v-model="formulario.telefono">
                         </div>
                         <div class="flex items-center justify-between">
                           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

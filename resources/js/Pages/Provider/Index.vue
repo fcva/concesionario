@@ -16,7 +16,7 @@ defineProps({
             <h2
                 class="text-xl font-semibold leading-tight text-gray-800"
             >
-                Providers
+                Proveedores
             </h2>
             
         </template>

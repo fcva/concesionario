@@ -42,25 +42,37 @@ const createProducto = () => {
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="codigo">
                             Codigo
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="codigo" type="text" placeholder="Codigo del producto" required v-model="formulario.codigo">
+                          <input 
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="codigo" 
+                            type="text" 
+                            placeholder="Codigo del producto" 
+                            autocomplete="off"
+                            required v-model="formulario.codigo">
                         </div>
                         <div class="mb-4">
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
                             Nombre
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Nombre del producto" required v-model="formulario.nombre">
+                          <input 
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                            id="nombre" 
+                            type="text" 
+                            placeholder="Nombre del producto"
+                            autocomplete="off"
+                            required v-model="formulario.nombre">
                         </div>
                         <div class="mb-4">
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="marca">
                             Marca
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="marca" type="text" placeholder="Marca" required v-model="formulario.marca">
+                          <input autocomplete="off" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="marca" type="text" placeholder="Marca" required v-model="formulario.marca">
                         </div>
                         <div class="mb-4">
                           <label class="block text-gray-700 text-sm font-bold mb-2" for="modelo">
                             Modelo
                           </label>
-                          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="modelo" type="tel" placeholder="Modelo del producto" required v-model="formulario.modelo">
+                          <input autocomplete="off" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="modelo" type="tel" placeholder="Modelo del producto" required v-model="formulario.modelo">
                         </div>
                         <div class="flex items-center justify-between">
                           <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

@@ -33,4 +33,7 @@ Route::get('/provider', function () {
 
 Route::resource('/provider', ProviderController::class);
 Route::resource('/producto', ProductoController::class);
+
+
 require __DIR__.'/auth.php';
+require __DIR__.'/compras.php';
