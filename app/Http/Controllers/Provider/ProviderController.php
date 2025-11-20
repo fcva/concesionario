@@ -41,10 +41,23 @@ class ProviderController extends Controller
         return Redirect::route('provider.index');
     }
 
-    // public function show(Request $request, Provider $provider) {
+    public function edit(Provider $provider) {
 
-    //     return Inertia::render('Provider/Show', [
-    //         'providers' => new ProviderResource($provider)
-    //     ]);
-    // }
+        return Inertia::render('Provider/Edit', [
+            'provider'=> $provider,
+        ]);
+    }
+
+    public function update(Request $request, Provider $provider) {
+        // validación de datos
+        $valiacion=$request->validate([
+            'nombre'    => 'required|string|max:255',
+            'direccion' => 'required|string|max:255',
+            'telefono'  => 'required|string|max:20',
+        ]);
+        // lógica para actualizar un proveedor
+        $provider->update($valiacion);
+
+        return Redirect::route('provider.index');
+    }
 }

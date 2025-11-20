@@ -24,12 +24,10 @@ defineProps({
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div>
-                    <h2>Welcome</h2>
                     <br>
                     <Link :href="route('provider.create' )" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Registrar un nuevo proveedor</Link>
                 </div>
                 <div>
-                    <h2>Proveedores</h2>
                     <br>
                     <div>
                         <table class="w-full table-auto border-collapse">
@@ -38,6 +36,7 @@ defineProps({
                                     <th class="px-4 py-2 text-left">Nombre</th>
                                     <th class="px-4 py-2 text-left">Direccion</th>
                                     <th class="px-4 py-2 text-left">Telefono</th>
+                                    <th class="px-4 py-2 text-left">Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,6 +49,9 @@ defineProps({
                                     </td>
                                     <td class="px-4 py-2">
                                         {{ provider.telefono }}
+                                    </td>
+                                    <td>
+                                        <Link :href="route('provider.edit', provider)" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Edit</Link>
                                     </td>
                                 </tr>
                             </tbody>
