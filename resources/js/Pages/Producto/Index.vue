@@ -37,6 +37,7 @@ defineProps({
                                     <th class="px-4 py-2 text-left">Nombre</th>
                                     <th class="px-4 py-2 text-left">Marca</th>
                                     <th class="px-4 py-2 text-left">Modelo</th>
+                                    <th class="px-4 py-2 text-left">Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,8 @@ defineProps({
                                     </td>
                                     <td class="px-4 py-2">
                                         {{ producto.modelo }}
+                                    </td>
+                                    <td> <Link :href="route('producto.edit', producto)" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Edit</Link>
                                     </td>
                                 </tr>
                             </tbody>

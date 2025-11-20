@@ -44,4 +44,25 @@ class ProductoController extends Controller
 
         return Redirect::route('producto.index');
     }
+
+    public function edit(Producto $producto) {
+
+        return Inertia::render('Producto/Edit', [
+            'producto'=> $producto,
+        ]);
+    }
+
+    public function update(Request $request, Producto $producto) {
+        // validación de datos
+        $valiacion=$request->validate([
+            'codigo'    => 'required|string|unique:productos,codigo,'.$producto->id,
+            'nombre' =>  'required|string|max:50',
+            'marca'  => 'required|string|max:50',
+            'modelo'  => 'required|string|max:20',
+        ]);
+        // lógica para actualizar un producto
+        $producto->update($valiacion);
+
+        return Redirect::route('producto.index');
+    }
 }
