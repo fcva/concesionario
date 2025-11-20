@@ -7,6 +7,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// use App\Http\Controllers\Compra\CompraController;
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -33,4 +35,6 @@ Route::get('/provider', function () {
 
 Route::resource('/provider', ProviderController::class);
 Route::resource('/producto', ProductoController::class);
+
+// Route::resource('/compra', CompraController::class);
 require __DIR__.'/auth.php';
