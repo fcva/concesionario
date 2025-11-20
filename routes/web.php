@@ -26,14 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// ruta provider
-Route::get('/provider', function () {
-    return Inertia::render('Provider/Index');
-})->middleware(['auth', 'verified'])->name('provider');
 
-Route::resource('/provider', ProviderController::class);
 Route::resource('/producto', ProductoController::class);
 
 
 require __DIR__.'/auth.php';
 require __DIR__.'/compras.php';
+require __DIR__.'/providers.php';

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 class ProviderController extends Controller
 {
-    //
     public function index(Request $request) {
 
         $per_page= request()->get('per_page') ?: 9;
@@ -22,29 +21,32 @@ class ProviderController extends Controller
         ]);
     }
 
-    public function create(Request $request) {
-
-        return Inertia::render('Provider/Create', [
-        ]);
-    }
-
     public function store(Request $request) {
-        // validación de datos
-        $valiacion=$request->validate([
+        
+        $request->validate([
             'nombre'    => 'required|string|max:255',
-            'direccion' => 'required|string|max:255',
-            'telefono'  => 'required|string|max:20',
         ]);
-        // lógica para almacenar un nuevo proveedor
-        $providers=Provider::create($valiacion);
 
-        return Redirect::route('provider.index');
+        $providers = Provider::create($request->all());
+
+        return back()->with('success','ok');
     }
 
-    // public function show(Request $request, Provider $provider) {
+    public function update(Request $request, Provider $provider) {
 
-    //     return Inertia::render('Provider/Show', [
-    //         'providers' => new ProviderResource($provider)
-    //     ]);
-    // }
+        $request->validate([
+            'nombre'    => 'required|string|max:255',
+        ]);
+
+        $provider->update($request->all());
+
+        return back()->with('success','ok');
+    }
+
+    public function destroy(Provider $provider) {
+
+        $provider->delete();
+
+        return back()->with('success','ok');
+    }
 }

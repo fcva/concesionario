@@ -42,8 +42,8 @@ const showingNavigationDropdown = ref(false);
                                 
                                 <!-- Providers -->
                                 <NavLink
-                                    :href="route('provider.index')"
-                                    :active="route().current('provider')"
+                                    :href="route('providers.index')"
+                                    :active="route().current('providers.index')"
                                 >
                                     Proveedores
                                 </NavLink>
